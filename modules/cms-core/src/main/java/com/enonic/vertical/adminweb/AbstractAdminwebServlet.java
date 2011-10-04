@@ -16,9 +16,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -79,7 +82,7 @@ import com.enonic.cms.core.timezone.TimeZoneService;
 
 public abstract class AbstractAdminwebServlet
     extends HttpServlet
-    implements Controller, ServletContextAware, InitializingBean, DisposableBean
+    implements Controller, ServletContextAware, InitializingBean, DisposableBean, ApplicationContextAware
 {
 
     @Autowired
@@ -228,6 +231,8 @@ public abstract class AbstractAdminwebServlet
     protected ResourceAccessResolver resourceAccessResolver;
 
     private ServletContext servletContext;
+
+    protected ApplicationContext applicationContext;
 
     public final ServletContext getServletContext()
     {
@@ -388,4 +393,10 @@ public abstract class AbstractAdminwebServlet
         }
     }
 
+    @Override
+    public void setApplicationContext( ApplicationContext applicationContext )
+            throws BeansException
+    {
+        this.applicationContext = applicationContext;
+    }
 }

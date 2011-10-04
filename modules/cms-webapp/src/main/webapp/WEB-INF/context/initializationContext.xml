@@ -10,4 +10,8 @@
     <property name="upgradeService" ref="upgradeService"/>
   </bean>
 
+  <bean class="com.enonic.vertical.adminweb.SectionHandlerServlet$PublishWizard" scope="prototype" />
+  <bean class="com.enonic.vertical.adminweb.handlers.ContentEnhancedImageHandlerServlet$ImportImagesWizard" scope="prototype" />
+  <bean class="com.enonic.vertical.adminweb.handlers.ContentFileHandlerServlet$ImportFilesWizard" scope="prototype" />
+
 </beans>
